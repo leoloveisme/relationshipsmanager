@@ -5,6 +5,8 @@
 <a href="index.php" target="" title="">Logotype and link to the index page</a>
 </td>
 <td align=right valign=top>
+Home | Profile | Messages | Settings | Logout
+<br><br>
 <?php 
 $current_page_name=basename($_SERVER['PHP_SELF']);
 echo 'Hello, <b>guest</b>. ';

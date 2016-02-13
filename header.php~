@@ -1,10 +1,12 @@
 <center><h1>Relationshipsmanager</h1></center>
-<table width=100% border=1>
+<table width=100% border=0>
 <tr>
 <td align=left>
 <a href="index.php" target="" title="">Logotype and link to the index page</a>
 </td>
 <td align=right valign=top>
+Home | Profile | Messages | Settings 
+<br><br>
 <?php 
 $current_page_name=basename($_SERVER['PHP_SELF']);
 echo 'Hello, <b>guest</b>. ';
