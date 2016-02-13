@@ -16,11 +16,19 @@
 <table width=100%>
 <tr>
 <td width=20% valign=top>
-Папки (если таковые были созданы пользователем)
+День рождения сегодня:
 <br><br>
 <hr>
 <br>
 Алфавитный список (буквы появляются сами по мере появления / добавления контактов)
+<br><br>
+<span style="color: white; background-color: red; font-weight: bold; ">Red</span> - The contact is overdue. You need to contact this contact. Last contact: "Date"
+<br><br>
+<span style="color: white; background-color: orange; font-weight: bold; ">Orange</span> - The contact is due. You need to contact this contact. Last contact: "Date"
+<br><br>
+<span style="color: black; background-color: yellow; font-weight: bold; ">Yellow</span> - The contact will be due soon. You can contact this contact now. Last contact: "Date"
+<br><br>
+<span style="color: white; background-color: green; font-weight: bold; ">Green</span> - It's all good. Last contact: "Date"
 <br><br>
 <hr>
 <br>
@@ -32,11 +40,11 @@
 <table width=100% border=0>
 <tr>
 <td width=48%>
-<b>Contact's own entries</b>
+<b>Contact's own entry</b>
 </td>
 <td width=4%>&nbsp;</td>
 <td width=48%>
-<b>Your own entries about contact</b>
+<b>Your own entry about contact</b>
 </td>
 </tr>
 <tr>
@@ -45,7 +53,7 @@
 <td width=48%>&nbsp;</td>
 </tr>
 <tr>
-<td width=48%>
+<td width=48% valign=top>
 Вася Пупкин
 <br><br>
 E-Mail:
@@ -65,8 +73,12 @@ Notes:
 Text of the note(s)
 </td>
 <td width=4%>&nbsp;</td>
-<td width=48%>
+<td width=48% valign=top>
 Василий Иванович Полетаев
+<br><br>
+Nickname:
+<br><br>
+Вася Полёт
 <br><br>
 E-Mail:
 <br><br>
