@@ -56,6 +56,10 @@ Telefon:
 <br><br>
 + 49 175 4523 6543
 <br><br>
+Date of birth:
+<br><br>
+15 апреля 1990 
+<br><br>
 Notes:
 <br><br>
 Text of the note(s)
@@ -72,6 +76,10 @@ Telefon:
 <br><br>
 + 49 69 4567 8954
 <br><br>
+Date of birth:
+<br><br>
+29 марта 1970 
+<br><br>
 Notes:
 <br><br>
 Text of the note(s)
@@ -83,7 +91,7 @@ Text of the note(s)
 </tr>
 <tr>
 <td colspan=3 align=center>
-History of communication
+<b>History of communication</b>
 <br><br>
 Bla bla bla 
 <br><br>
@@ -150,18 +158,80 @@ $('#email_contact_contact_input').hide();
 <br>
 Приглашение друзей, родственников и / или знакомых пользоваться платформой
 <br><br>
-E-mail или номер мобильного телефона в интернациональном формате <input name="" id="">
-<textarea name="" id="">Your invitation text</textarea>
-<br>
-<select name="" id=""><option name="" id="" value="">E-Mail</option><option name="" id="" value="">Whatsapp</option><option name="" id="" value="">Telegram</option><option name="" id="" value="">Viber</option><option name="" id="" value="">WeChat</option><option name="" id="" value="">Line</option><option name="" id="" value="">* Other, write us which one</option></select>
+E-mail или номер мобильного телефона в интернациональном формате
+<br><br> 
+<input name="" id="">
 <br><br>
-// On this * choice, will appear input box and button "Send"
+<textarea name="" id="">Your invitation text</textarea>
+<br><br>
+<select name="" id=""><option name="" id="" value="">E-Mail</option><option name="" id="" value="">Whatsapp</option><option name="" id="" value="">Telegram</option><option name="" id="" value="">Viber</option><option name="" id="" value="">WeChat</option><option name="" id="" value="">Line</option><option name="" id="other" value="">* Other, write us which one</option></select>
+<br><br>
+<span id="other_messengers"><input>
+<br><br>
+<button id="save_other_messengers_recommendation">Save</button>
+</span>
 <br><br>
 <button name="" id="">Отправить сообщение</button> 
 <br>(по e-mail или любому мессенжеру с API) 
 </td>
 </tr>
 </table>
+
+<!-- -->
+
+<script>
+
+$(function(){
+$('#other_messengers').hide();
+});
+
+$(function(){
+$('#other').click (function(){
+$('#other_messengers').show();
+});
+});
+
+/*
+
+Надо написать фунцию которая будет отправлять рекомендации новых мессенжеров с ввода рекомендаций после того как человек кликнет на кнопку сохранить. 
+
+text="Спасибо Вам за Вашу рекомендацию. Ваша рекомендация была успешно отправлена нам.";
+
+*/
+
+</script>
+
+<!-- -->
+
+
+<!-- набор функций для верхнего меню -->
+
+<script>
+
+$(function(){
+$('#messages_link').click(function() {
+$('#main_area').html("Here will be your messages");
+});
+});
+
+
+$(function(){
+$('#profile').click(function() {
+$('#main_area').html('<h1>Profile</h1><br><br>Вася Пупкин <font color=gray>Visible to all</font><br><br>E-Mail: <font color=gray>Visible to all</font><br><br>vasya.pupkin@pupkin.com<br><br>Telefon: <font color=gray>Visible only to friends</font><br><br>+ 49 175 4523 6543<br><br>Date of birth: <font color=gray>Visible to all</font><br><br>15 апреля 1990 <br><br>Notes: <font color=gray>Visible to nobody / Private</font><br><br>Text of the note(s)<br><br><a name="settings"></a><h2>Settings</h2>');
+});
+});
+
+
+$(function(){
+$('#settings').click(function() {
+$('#main_area').html('<h1>Profile</h1><br><br>Вася Пупкин <font color=gray>Visible to all</font><br><br>E-Mail: <font color=gray>Visible to all</font><br><br>vasya.pupkin@pupkin.com<br><br>Telefon: <font color=gray>Visible only to friends</font><br><br>+ 49 175 4523 6543<br><br>Date of birth: <font color=gray>Visible to all</font><br><br>15 апреля 1990 <br><br>Notes: <font color=gray>Visible to nobody / Private</font><br><br>Text of the note(s)<br><br><a name="settings"></a><h2>Settings</h2>');
+});
+});
+
+</script>
+
+<!-- Конец набора функций для верхнего меню -->
+
 <?php include("footer.php"); ?>
 
 <p>&nbsp;</p>
