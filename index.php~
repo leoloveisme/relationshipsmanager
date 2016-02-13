@@ -22,7 +22,7 @@
 <br>
 Алфавитный список (буквы появляются сами по мере появления / добавления контактов)
 <br><br>
-<span style="color: black; background-color: red; font-weight: bold; ">Red</span> - The contact is overdue. You need to contact this contact. Last contact: "Date"
+<span style="color: white; background-color: red; font-weight: bold; ">Red</span> - The contact is overdue. You need to contact this contact. Last contact: "Date"
 <br><br>
 <span style="color: white; background-color: orange; font-weight: bold; ">Orange</span> - The contact is due. You need to contact this contact. Last contact: "Date"
 <br><br>
@@ -38,6 +38,24 @@
 <td width=50% valign=top name="main_area" id="main_area">
 <!-- здесь начинается вложенная таблица -->
 <table width=100% border=0>
+<tr>
+<td colspan=3 align=right valign=middle>
+<img src="images/cog.png" id="contact_settings_particular_contact" title="Contact settings for this contact" alt="Contact settings for this contact">
+</td>
+</tr>
+<tr>
+<td colspan=3 id="area_contact_settings_particular_contact"></td>
+</tr>
+<tr>
+<td width=48%>&nbsp;</td>
+<td width=4%>&nbsp;</td>
+<td width=48%>&nbsp;</td>
+</tr>
+<tr>
+<td width=48%>&nbsp;</td>
+<td width=4%>&nbsp;</td>
+<td width=48%>&nbsp;</td>
+</tr>
 <tr>
 <td width=48%>
 <b>Contact's own entry</b>
@@ -103,6 +121,10 @@ Text of the note(s)
 </tr>
 <tr>
 <td colspan=3 align=center>
+<span style="color: white; background-color: green; font-weight: bold; ">Green</span> - It's all good.
+<br><br>
+Last contacted: "Date"
+<br><br>
 <b>History of communication</b>
 <br><br>
 Bla bla bla 
@@ -229,20 +251,35 @@ $('#main_area').html("Here will be your messages");
 
 $(function(){
 $('#profile').click(function() {
-$('#main_area').html('<h1>Profile</h1><br><br>Вася Пупкин <font color=gray>Visible to all</font><br><br>E-Mail: <font color=gray>Visible to all</font><br><br>vasya.pupkin@pupkin.com<br><br>Telefon: <font color=gray>Visible only to friends</font><br><br>+ 49 175 4523 6543<br><br>Date of birth: <font color=gray>Visible to all</font><br><br>15 апреля 1990 <br><br>Notes: <font color=gray>Visible to nobody / Private</font><br><br>Text of the note(s)<br><br><a name="settings"></a><h2>Settings</h2>');
+$('#main_area').html('<h1>Profile</h1><br><br>Вася Пупкин <font color=gray>Visible to all</font><br><br>E-Mail: <font color=gray>Visible to all</font><br><br>vasya.pupkin@pupkin.com<br><br>Telefon: <font color=gray>Visible only to friends</font><br><br>+ 49 175 4523 6543<br><br>Date of birth: <font color=gray>Visible to all</font><br><br>15 апреля 1990 <br><br>Notes: <font color=gray>Visible to nobody / Private</font><br><br>Text of the note(s)<br><br><a name="settings"></a><h2>Settings</h2>Who can add me:<br><br><input type="radio" id="contacted_by_everyone" value="everyone">Everyone<br><input type="radio" id="contacted_by_only_authorised" value="only_authorised">Only authorised people<br><input type="radio" id="contacted_by_no_one" value="no_one">No one<br><br>    Who can contact (message) me:<br><br><input type="radio" id="contacted_by_everyone" value="everyone">Everyone<br><input type="radio" id="contacted_by_only_authorised" value="only_authorised">Only authorised people<br><input type="radio" id="contacted_by_no_one" value="no_one">No one<br><br>     <a name="general_contact_settings"></a><h2>General contact settings</h2>How frequently to contact this contact:<br><br><input type="checkbox" id="notification_weekly" value="weekly">weekly<br><input type="checkbox" id="notification_monthly" value="monthly">monthly<br><input type="checkbox" id="notification_quarterly" value="quarterly">quarterly<br><input type="checkbox" id="notification_halfyearly" value="halfyearly">half-yearly<br><input type="checkbox" id="notification_yearly" value="yearly">yearly<br><br>How to be notified:<br><br><input type="checkbox" id="notification_by_email" value="email">per e-mail<br><input type="checkbox" id="notification_by_sms" value="sms">per sms<br><input type="checkbox" id="notification_onsite" value="onsite">on-site notifications');
 });
 });
 
 
 $(function(){
 $('#settings').click(function() {
-$('#main_area').html('<h1>Profile</h1><br><br>Вася Пупкин <font color=gray>Visible to all</font><br><br>E-Mail: <font color=gray>Visible to all</font><br><br>vasya.pupkin@pupkin.com<br><br>Telefon: <font color=gray>Visible only to friends</font><br><br>+ 49 175 4523 6543<br><br>Date of birth: <font color=gray>Visible to all</font><br><br>15 апреля 1990 <br><br>Notes: <font color=gray>Visible to nobody / Private</font><br><br>Text of the note(s)<br><br><a name="settings"></a><h2>Settings</h2>');
+$('#main_area').html('<h1>Profile</h1><br><br>Вася Пупкин <font color=gray>Visible to all</font><br><br>E-Mail: <font color=gray>Visible to all</font><br><br>vasya.pupkin@pupkin.com<br><br>Telefon: <font color=gray>Visible only to friends</font><br><br>+ 49 175 4523 6543<br><br>Date of birth: <font color=gray>Visible to all</font><br><br>15 апреля 1990 <br><br>Notes: <font color=gray>Visible to nobody / Private</font><br><br>Text of the note(s)<br><br><a name="settings"></a><h2>Settings</h2>Who can add me:<br><br><input type="checkbox" id="contacted_by_everyone" value="everyone">Everyone<br><input type="checkbox" id="contacted_by_only_authorised" value="only_authorised">Only authorised people<br><input type="checkbox" id="contacted_by_no_one" value="no_one">No one<br><br>    Who can contact (message) me:<br><br><input type="checkbox" id="contacted_by_everyone" value="everyone">Everyone<br><input type="checkbox" id="contacted_by_only_authorised" value="only_authorised">Only authorised people<br><input type="checkbox" id="contacted_by_no_one" value="no_one">No one<br><br>     <a name="general_contact_settings"></a><h2>General contact settings</h2>How frequently to contact the contacts:<br><br><input type="checkbox" id="notification_weekly" value="weekly">weekly<br><input type="checkbox" id="notification_monthly" value="monthly">monthly<br><input type="checkbox" id="notification_quarterly" value="quarterly">quarterly<br><input type="checkbox" id="notification_halfyearly" value="halfyearly">half-yearly<br><input type="checkbox" id="notification_yearly" value="yearly">yearly<br><br>How to be notified:<br><br><input type="checkbox" id="notification_by_email" value="email">per e-mail<br><input type="checkbox" id="notification_by_sms" value="sms">per sms<br><input type="checkbox" id="notification_onsite" value="onsite">on-site notifications');
 });
 });
 
 </script>
 
 <!-- Конец набора функций для верхнего меню -->
+
+<!--  -->
+
+<script>
+
+$(function(){
+$('#contact_settings_particular_contact').click (function(){
+$('#area_contact_settings_particular_contact').html('How frequently to contact this contact:<br><br><input type="checkbox" id="notification_weekly" value="weekly">weekly<br><input type="checkbox" id="notification_monthly" value="monthly">monthly<br><input type="checkbox" id="notification_quarterly" value="quarterly">quarterly<br><input type="checkbox" id="notification_halfyearly" value="halfyearly">half-yearly<br><input type="checkbox" id="notification_yearly" value="yearly">yearly<br><br>How to be notified:<br><br><input type="checkbox" id="notification_by_email" value="email">per e-mail<br><input type="checkbox" id="notification_by_sms" value="sms">per sms<br><input type="checkbox" id="notification_onsite" value="onsite">on-site notifications');
+});
+});
+
+</script>
+
+<!--  -->
+
 
 <?php include("footer.php"); ?>
 

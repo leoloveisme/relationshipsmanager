@@ -5,7 +5,7 @@
 <a href="index.php" target="" title="">Logotype and link to the index page</a>
 </td>
 <td align=right valign=top>
-Home | <u id="profile" title="Profile">Profile</a> | <u id="messages_link" title="Messages">Messages</u> | <a href="profile.php#settings" title="Settings">Settings</a> | Logout
+Home | <u id="profile" title="Profile">Profile</u> | <u id="messages_link" title="Messages">Messages</u> | <u id="settings" title="Settings">Settings</u> | Logout
 <br><br>
 <?php 
 $current_page_name=basename($_SERVER['PHP_SELF']);
