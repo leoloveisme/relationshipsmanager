@@ -2,23 +2,12 @@
 <table width=100% border=0>
 <tr>
 <td align=left>
-<a href="index.php" target="" title="">Logotype and link to the index page</a>
+<a href="" target="" title="">Logotype and link to the index page</a>
 </td>
 <td align=right valign=top>
 <a href="">Home</a> | <u id="profile" title="Profile">Profile</u> | <u id="messages_link" title="Messages">Messages</u> | <u id="settings" title="Settings">Settings</u> | Logout
 <br><br>
-<?php 
-$current_page_name=basename($_SERVER['PHP_SELF']);
-echo 'Hello, <b>guest</b>. ';
-
-if ($current_page_name=="register.php") echo 'Register ';
-else
-echo '<a href="register.php" title="" target="">Register</a> ';
-
-if ($current_page_name=="login.php") echo 'Login ';
-else
-echo '<a href="login.php" title="" target="">Login</a> ';
-?>
+Hello, <b>guest</b>. <u id="register" title="Register">Register</u> <u id="login_menu" title="Login">Login</u>
 </td>
 </tr>
 </table>

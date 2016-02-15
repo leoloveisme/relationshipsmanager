@@ -38,18 +38,129 @@
 <td width=50% valign=top name="main_area" id="main_area">
 <!-- здесь начинается вложенная таблица -->
 <table width=100% border=0>
+
+<!--
+
 <tr>
-<td colspan=3 align=right valign=middle>
-<img src="images/cog.png" id="contact_settings_particular_contact" title="Contact settings for this contact" alt="Contact settings for this contact">
+<td colspan=3>
+&nbsp;
 </td>
 </tr>
+
+
 <tr>
-<td colspan=3 id="area_contact_settings_particular_contact"></td>
+<td width=48%>&nbsp;</td>
+<td width=4%>&nbsp;</td>
+<td width=48%>&nbsp;</td>
+</tr>
+
+
+-->
+
+<tr>
+<td width=48%>
+<u id="add_new_contact" title="Add new contact">Add new contact</u>
+</td>
+
+
+<?php
+
+function mySQLConnect()
+
+{
+
+$servername = "localhost";
+$username = "root";
+$password = "temirtau1";
+$database="relationshipsmanager";
+
+// Create connection
+$conn = new mysqli($servername, $username, $password, $database);
+
+// Check connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+echo "Connected successfully";
+
+}
+
+mySQLConnect();
+
+?>
+
+
+<script>
+
+/* this below works
+
+function my_function()
+{
+xmlhttp=new XMLHttpRequest();
+document.getElementById("main_area").innerHTML=xmlhttp.responseText;
+xmlhttp.open("GET","connect_mysql.php",true);
+xmlhttp.send();
+}
+
+$(function(){
+$('#add_new_contact').click(function(){
+$('#main_area').html('Тут будут добавляться новые контакты<br><br><body><table width=100% border=1><tr><td>Имя</td> <td><input></td> <td>Фамилия</td> <td><input></td></tr><tr><td colspan=2></td><td colspan=2 align=right><button id="save" onclick="my_function()">Save</button></td></tr></table>');
+});
+});
+
+*/ 
+
+//this above works
+
+
+/*
+
+function my_function2(first_name,last_name)
+{
+var a=first_name;
+var b=last_name; 
+document.getElementById("main_area").innerHTML = a;
+document.getElementById("main_area").innerHTML = " ";
+document.getElementById("main_area").innerHTML = b;
+
+//document.getElementById("main_area").innerHTML = a + " " + b;
+}
+
+
+function my_function(str)
+{
+xmlhttp=new XMLHttpRequest();
+document.getElementById("main_area").innerHTML=xmlhttp.responseText;
+xmlhttp.open("GET","temp.php?q="+str,true);
+xmlhttp.send();
+}
+
+//var str="Влад";
+
+*/
+
+$(function(){
+$('#add_new_contact').click(function(){
+var str="Влад";
+$('#main_area').html('Тут будут добавляться новые контакты<br><br><body><form id="" name=""><table width=100% border=1><tr><td>Имя</td> <td><input id="first_name"></td> <td>Фамилия</td> <td><input id="last_name"></td></tr><tr><td colspan=2></td><td colspan=2 align=right><button id="save" onclick="my_function(str)">Save</button></td></tr></table></form>');
+});
+});
+
+
+</script>
+
+
+<td width=4%>&nbsp;</td>
+<td width=48% align=right><img src="images/cog.png" id="contact_settings_particular_contact" title="Contact settings for this contact" alt="Contact settings for this contact">
+</td>
 </tr>
 <tr>
 <td width=48%>&nbsp;</td>
 <td width=4%>&nbsp;</td>
 <td width=48%>&nbsp;</td>
+</tr>
+<tr>
+<td colspan=3 id="area_contact_settings_particular_contact"></td>
 </tr>
 <tr>
 <td width=48%>&nbsp;</td>
@@ -140,11 +251,11 @@ Export into DOC | Export into PDF
 <tr>
 <td colspan=3 align=center>Write a message to the contact
 <br><br>
-<textarea name="" id="">Your message to the contact</textarea>
+<textarea name="" id="" placeholder="Your message to the contact"></textarea>
 <br>
 <select name="" id="email_contact_contact_select"><option name="" id="email_contact_contact_option_messenger" value="platform_messenger">Using platform messenger</option><option name="" id="email_contact_contact_option_email" value="">* E-mail</option></select>
 <br>
-<input name="" id="email_contact_contact_input" value="E-mail address"><br>
+<input name="" id="email_contact_contact_input" placeholder="E-mail address"><br>
 <!-- here, in the script below, we will dynamically show or hide input field -->
 <script>
 $(function(){
@@ -154,6 +265,20 @@ $('#email_contact_contact_input').hide();
 $(function(){
 $('#email_contact_contact_option_email').click (function(){
 $('#email_contact_contact_input').show();
+
+/* 
+
+No need for the function anymore because of the usage of HTML placeholder option placeholder="Write your text here" or similar
+
+$('#email_contact_contact_input').click( function() {
+$(this).val('');
+
+$('#email_contact_contact_input').empty(); <- this doesn't work, however this one -> $('#email_contact_contact_input').val(''); works fine and this one -> $(this).val(''); is currently used
+ 
+});
+
+*/
+
 });
 $('#email_contact_contact_option_messenger').click (function(){
 $('#email_contact_contact_input').hide();
@@ -186,7 +311,7 @@ $('#email_contact_contact_input').hide();
 </td>
 <td width=5%>&nbsp;</td>
 <td width=20% valign=top>
-Активные запросы на добавление в список контактов и возможности видеть записи сделанные контактом
+Активные запросы на добавление в список контактов
 <br><br>
 <hr>
 <br>
@@ -196,13 +321,11 @@ E-mail или номер мобильного телефона в интерна
 <br><br> 
 <input name="" id="">
 <br><br>
-<textarea name="" id="">Your invitation text</textarea>
+<textarea name="" id="" placeholder="Your invitation text"></textarea>
 <br><br>
-<select name="" id=""><option name="" id="" value="">E-Mail</option><option name="" id="" value="">Whatsapp</option><option name="" id="" value="">Telegram</option><option name="" id="" value="">Viber</option><option name="" id="" value="">WeChat</option><option name="" id="" value="">Line</option><option name="" id="other" value="">* Other, write us which one</option></select>
+<select name="" id="invitation_select"><option name="" id="" value="">E-Mail</option><option name="" id="" value="">Whatsapp</option><option name="" id="" value="">Telegram</option><option name="" id="" value="">Viber</option><option name="" id="" value="">WeChat</option><option name="" id="" value="">Line</option><option name="" id="other" value="">* Other, write us which one</option></select>
 <br><br>
-<span id="other_messengers"><input>
-<br><br>
-<button id="save_other_messengers_recommendation">Save</button>
+<span id="other_messengers"><input id="other_messengers_input" placeholder="Write the messenges apps name here"> <button id="save_other_messengers_recommendation">Save</button>
 </span>
 <br><br>
 <button name="" id="">Отправить сообщение</button> 
@@ -224,6 +347,18 @@ $('#other').click (function(){
 $('#other_messengers').show();
 });
 });
+
+/*
+
+No need for the function anymore, because of the usage HTML placeholder option placeholder="Write your text here" or similar
+
+$(function(){
+$('#other_messengers_input').click (function(){
+$(this).val('');
+});
+});
+
+*/
 
 /*
 
@@ -251,14 +386,14 @@ $('#main_area').html("Here will be your messages");
 
 $(function(){
 $('#profile').click(function() {
-$('#main_area').html('<h1>Profile</h1><br><br>Вася Пупкин <font color=gray>Visible to all</font><br><br>E-Mail: <font color=gray>Visible to all</font><br><br>vasya.pupkin@pupkin.com<br><br>Telefon: <font color=gray>Visible only to friends</font><br><br>+ 49 175 4523 6543<br><br>Date of birth: <font color=gray>Visible to all</font><br><br>15 апреля 1990 <br><br>Notes: <font color=gray>Visible to nobody / Private</font><br><br>Text of the note(s)<br><br><a name="settings"></a><h2>Settings</h2>Who can add me:<br><br><input type="radio" id="contacted_by_everyone" value="everyone">Everyone<br><input type="radio" id="contacted_by_only_authorised" value="only_authorised">Only authorised people<br><input type="radio" id="contacted_by_no_one" value="no_one">No one<br><br>    Who can contact (message) me:<br><br><input type="radio" id="contacted_by_everyone" value="everyone">Everyone<br><input type="radio" id="contacted_by_only_authorised" value="only_authorised">Only authorised people<br><input type="radio" id="contacted_by_no_one" value="no_one">No one<br><br>     <a name="general_contact_settings"></a><h2>General contact settings</h2>How frequently to contact this contact:<br><br><input type="checkbox" id="notification_weekly" value="weekly">weekly<br><input type="checkbox" id="notification_monthly" value="monthly">monthly<br><input type="checkbox" id="notification_quarterly" value="quarterly">quarterly<br><input type="checkbox" id="notification_halfyearly" value="halfyearly">half-yearly<br><input type="checkbox" id="notification_yearly" value="yearly">yearly<br><br>How to be notified:<br><br><input type="checkbox" id="notification_by_email" value="email">per e-mail<br><input type="checkbox" id="notification_by_sms" value="sms">per sms<br><input type="checkbox" id="notification_onsite" value="onsite">on-site notifications');
+$('#main_area').html('<h1>Profile</h1>Profile ID: "ID"<br><br>Profile address: "Profile address" https://site_address/ID<br><br>Вася Пупкин <font color=gray>Visible to all</font><br><br>E-Mail: <font color=gray>Visible to all</font><br><br>vasya.pupkin@pupkin.com<br><br>Telefon: <font color=gray>Visible only to friends</font><br><br>+ 49 175 4523 6543<br><br>Date of birth: <font color=gray>Visible to all</font><br><br>15 апреля 1990 <br><br>Notes: <font color=gray>Visible to nobody / Private</font><br><br>Text of the note(s)<br><br><a name="settings"></a><h2>Settings</h2>Who can add me:<br><br><input type="radio" id="contacted_by_everyone" value="everyone" name="who_can_add_me">Everyone<br><input type="radio" id="contacted_by_only_authorised" value="only_authorised" name="who_can_add_me">Only authorised people<br><input type="radio" id="contacted_by_no_one" value="no_one" name="who_can_add_me">No one<br><br>    Who can contact (message) me:<br><br><input type="radio" id="contacted_by_everyone" value="everyone" name="who_can_contact_me">Everyone<br><input type="radio" id="contacted_by_only_authorised" value="only_authorised" name="who_can_contact_me">Only authorised people<br><input type="radio" id="contacted_by_no_one" value="no_one" name="who_can_contact_me">No one<br><br>     <a name="general_contact_settings"></a>I want to be informed: <br><br><input type="checkbox"> About company news<br> <input type="checkbox"> About cool and new features<h2>General contact settings</h2>How frequently to contact this contact:<br><br><input type="checkbox" id="notification_weekly" value="weekly">weekly<br><input type="checkbox" id="notification_monthly" value="monthly">monthly<br><input type="checkbox" id="notification_quarterly" value="quarterly">quarterly<br><input type="checkbox" id="notification_halfyearly" value="halfyearly">half-yearly<br><input type="checkbox" id="notification_yearly" value="yearly">yearly<br><br>How to be notified:<br><br><input type="checkbox" id="notification_by_email" value="email">per e-mail<br><input type="checkbox" id="notification_by_sms" value="sms">per sms<br><input type="checkbox" id="notification_onsite" value="onsite">on-site notifications');
 });
 });
 
 
 $(function(){
 $('#settings').click(function() {
-$('#main_area').html('<h1>Profile</h1><br><br>Вася Пупкин <font color=gray>Visible to all</font><br><br>E-Mail: <font color=gray>Visible to all</font><br><br>vasya.pupkin@pupkin.com<br><br>Telefon: <font color=gray>Visible only to friends</font><br><br>+ 49 175 4523 6543<br><br>Date of birth: <font color=gray>Visible to all</font><br><br>15 апреля 1990 <br><br>Notes: <font color=gray>Visible to nobody / Private</font><br><br>Text of the note(s)<br><br><a name="settings"></a><h2>Settings</h2>Who can add me:<br><br><input type="radio" id="contacted_by_everyone" value="everyone">Everyone<br><input type="radio" id="contacted_by_only_authorised" value="only_authorised">Only authorised people<br><input type="radio" id="contacted_by_no_one" value="no_one">No one<br><br>    Who can contact (message) me:<br><br><input type="radio" id="contacted_by_everyone" value="everyone">Everyone<br><input type="radio" id="contacted_by_only_authorised" value="only_authorised">Only authorised people<br><input type="radio" id="contacted_by_no_one" value="no_one">No one<br><br>     <a name="general_contact_settings"></a><h2>General contact settings</h2>How frequently to contact this contact:<br><br><input type="checkbox" id="notification_weekly" value="weekly">weekly<br><input type="checkbox" id="notification_monthly" value="monthly">monthly<br><input type="checkbox" id="notification_quarterly" value="quarterly">quarterly<br><input type="checkbox" id="notification_halfyearly" value="halfyearly">half-yearly<br><input type="checkbox" id="notification_yearly" value="yearly">yearly<br><br>How to be notified:<br><br><input type="checkbox" id="notification_by_email" value="email">per e-mail<br><input type="checkbox" id="notification_by_sms" value="sms">per sms<br><input type="checkbox" id="notification_onsite" value="onsite">on-site notifications');
+$('#main_area').html('<h1>Profile</h1>Profile ID: "ID"<br><br>Profile address: "Profile address" https://site_address/ID<br><br>Вася Пупкин <font color=gray>Visible to all</font><br><br>E-Mail: <font color=gray>Visible to all</font><br><br>vasya.pupkin@pupkin.com<br><br>Telefon: <font color=gray>Visible only to friends</font><br><br>+ 49 175 4523 6543<br><br>Date of birth: <font color=gray>Visible to all</font><br><br>15 апреля 1990 <br><br>Notes: <font color=gray>Visible to nobody / Private</font><br><br>Text of the note(s)<br><br><a name="settings"></a><h2>Settings</h2>Who can add me:<br><br><input type="radio" id="contacted_by_everyone" value="everyone" name="who_can_add_me">Everyone<br><input type="radio" id="contacted_by_only_authorised" value="only_authorised" name="who_can_add_me">Only authorised people<br><input type="radio" id="contacted_by_no_one" value="no_one" name="who_can_add_me">No one<br><br>    Who can contact (message) me:<br><br><input type="radio" id="contacted_by_everyone" value="everyone" name="who_can_contact_me">Everyone<br><input type="radio" id="contacted_by_only_authorised" value="only_authorised" name="who_can_contact_me">Only authorised people<br><input type="radio" id="contacted_by_no_one" value="no_one" name="who_can_contact_me">No one<br><br>     <a name="general_contact_settings"></a>I want to be informed: <br><br><input type="checkbox"> About company news<br> <input type="checkbox"> About cool and new features<h2>General contact settings</h2>How frequently to contact this contact:<br><br><input type="checkbox" id="notification_weekly" value="weekly">weekly<br><input type="checkbox" id="notification_monthly" value="monthly">monthly<br><input type="checkbox" id="notification_quarterly" value="quarterly">quarterly<br><input type="checkbox" id="notification_halfyearly" value="halfyearly">half-yearly<br><input type="checkbox" id="notification_yearly" value="yearly">yearly<br><br>How to be notified:<br><br><input type="checkbox" id="notification_by_email" value="email">per e-mail<br><input type="checkbox" id="notification_by_sms" value="sms">per sms<br><input type="checkbox" id="notification_onsite" value="onsite">on-site notifications');
 });
 });
 
@@ -280,6 +415,43 @@ $('#area_contact_settings_particular_contact').html('How frequently to contact t
 
 <!--  -->
 
+
+
+<!--  -->
+
+<script>
+
+$(function(){
+$('#register').click(function() {
+$('#main_area').html('<table width=100% border=0><tr><td>E-mail:</td><td><input id="email" placeholder="Your e-mail, please"></td><td colspan=2></td></tr><tr><td>Password:</td> <td><input id="password" type="password"></td><td>Repeat password, please:</td><td><input id="password_repeat" type="password"></td><tr><td colspan=4><input id="" type="checkbox"> Please, check the box that you have read, understood and agree with all our terms | <a href="agbs.php" id="" name="" title="">Terms</a></td></tr><tr><td colspan=4><input id="" type="checkbox"> Please, check the box if you want to be informed about our news and cool feature updates</td></tr><tr><td colspan=3></td><td valign=bottom align="right"><button id="send">Send</button></td></tr></table>');
+});
+});
+
+$(function(){
+$('#login_menu').click(function() {
+$('#main_area').html('<table width=100% border=0><tr><td>E-mail:</td><td><input id="email" placeholder="Your e-mail, please"></td><td>Password:</td><td><input id="password" type="password"></td></tr><tr><td colspan=2><a href="forgot_password.php" id="forgot_password" title="Forgot password?">Forgot password?</a></td><td colspan=2 align="right"><button id="login">Login</button></td></tr></table>');
+});
+});
+
+/* эти две функции ниже не работают 
+
+$(function(){
+$('#forgot_password').click(function() {
+$('#main_area').html('<table width=100% border=0><tr><td>E-mail:</td><td><input id="email" placeholder="Your e-mail, please"></td><td align="right"><button id="send">Send</button></td></tr></table>');
+});
+});
+
+$(function(){
+$('#login').click(function() {
+$('#main_area').html('Работает');
+});
+});
+
+*/
+
+</script>
+
+<!--  -->
 
 <?php include("footer.php"); ?>
 
