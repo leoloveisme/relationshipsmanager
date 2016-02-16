@@ -2,6 +2,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /> 
 		<title>Relationshipsmanager</title>
+<link rel="stylesheet" href="css/styles.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script> 
 <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
@@ -62,35 +63,8 @@
 <u id="add_new_contact" title="Add new contact">Add new contact</u>
 </td>
 
-
-<?php
-
-function mySQLConnect()
-
-{
-
-$servername = "localhost";
-$username = "root";
-$password = "temirtau1";
-$database="relationshipsmanager";
-
-// Create connection
-$conn = new mysqli($servername, $username, $password, $database);
-
-// Check connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
-echo "Connected successfully";
-
-}
-
-mySQLConnect();
-
-?>
-
-
 <script>
+
 
 /* this below works
 
@@ -141,11 +115,9 @@ xmlhttp.send();
 
 $(function(){
 $('#add_new_contact').click(function(){
-var str="Влад";
-$('#main_area').html('Тут будут добавляться новые контакты<br><br><body><form id="" name=""><table width=100% border=1><tr><td>Имя</td> <td><input id="first_name"></td> <td>Фамилия</td> <td><input id="last_name"></td></tr><tr><td colspan=2></td><td colspan=2 align=right><button id="save" onclick="my_function(str)">Save</button></td></tr></table></form>');
+$('#main_area').html('Тут будут добавляться новые контакты<br><br><body><form id="save_contacts_form" name="" action="save_contacts.php"><table width=100% border=1><tr><td>Имя</td> <td><input id="first_name" name="first_name"></td> <td>Фамилия</td> <td><input id="last_name" name="last_name"></td></tr><tr><td colspan=2></td><td colspan=2 align=right><button id="save_contact_entries">Save</button></td></tr></table></form><br><br><span id="result"></span>');
 });
 });
-
 
 </script>
 
@@ -160,7 +132,9 @@ $('#main_area').html('Тут будут добавляться новые кон
 <td width=48%>&nbsp;</td>
 </tr>
 <tr>
-<td colspan=3 id="area_contact_settings_particular_contact"></td>
+<td colspan=3 id="area_contact_settings_particular_contact">
+How frequently to contact this contact:<br><br><input type="checkbox" id="notification_weekly" value="weekly">weekly<br><input type="checkbox" id="notification_monthly" value="monthly">monthly<br><input type="checkbox" id="notification_quarterly" value="quarterly">quarterly<br><input type="checkbox" id="notification_halfyearly" value="halfyearly">half-yearly<br><input type="checkbox" id="notification_yearly" value="yearly">yearly<br><br>How to be notified:<br><br><input type="checkbox" id="notification_by_email" value="email">per e-mail<br><input type="checkbox" id="notification_by_sms" value="sms">per sms<br><input type="checkbox" id="notification_onsite" value="onsite">on-site notifications
+</td>
 </tr>
 <tr>
 <td width=48%>&nbsp;</td>
@@ -256,7 +230,7 @@ Export into DOC | Export into PDF
 <select name="" id="email_contact_contact_select"><option name="" id="email_contact_contact_option_messenger" value="platform_messenger">Using platform messenger</option><option name="" id="email_contact_contact_option_email" value="">* E-mail</option></select>
 <br>
 <input name="" id="email_contact_contact_input" placeholder="E-mail address"><br>
-<!-- here, in the script below, we will dynamically show or hide input field -->
+<!-- here, in the script below, we will dynamically show or hide input email contact field -->
 <script>
 $(function(){
 $('#email_contact_contact_input').hide();
@@ -265,6 +239,11 @@ $('#email_contact_contact_input').hide();
 $(function(){
 $('#email_contact_contact_option_email').click (function(){
 $('#email_contact_contact_input').show();
+});
+$('#email_contact_contact_option_messenger').click (function(){
+$('#email_contact_contact_input').hide();
+});
+});
 
 /* 
 
@@ -279,11 +258,7 @@ $('#email_contact_contact_input').empty(); <- this doesn't work, however this on
 
 */
 
-});
-$('#email_contact_contact_option_messenger').click (function(){
-$('#email_contact_contact_input').hide();
-});
-});
+
 </script>
 <!-- End of the script -->
 <button name="" id="">Send</button>
@@ -321,12 +296,12 @@ E-mail или номер мобильного телефона в интерна
 <br><br> 
 <input name="" id="">
 <br><br>
-<textarea name="" id="" placeholder="Your invitation text"></textarea>
-<br><br>
-<select name="" id="invitation_select"><option name="" id="" value="">E-Mail</option><option name="" id="" value="">Whatsapp</option><option name="" id="" value="">Telegram</option><option name="" id="" value="">Viber</option><option name="" id="" value="">WeChat</option><option name="" id="" value="">Line</option><option name="" id="other" value="">* Other, write us which one</option></select>
+<select name="" id="invitation_select"><option name="" id="" value="">E-Mail</option><option name="" id="" value="">Whatsapp</option><option name="" id="" value="">Telegram</option><option name="" id="" value="">Viber</option><option name="" id="" value="">WeChat</option><option name="" id="" value="">Line</option><option name="" id="other" value="other">* Other, write us which one</option></select>
 <br><br>
 <span id="other_messengers"><input id="other_messengers_input" placeholder="Write the messenges apps name here"> <button id="save_other_messengers_recommendation">Save</button>
 </span>
+<br><br>
+<textarea name="" id="" placeholder="Your invitation text"></textarea>
 <br><br>
 <button name="" id="">Отправить сообщение</button> 
 <br>(по e-mail или любому мессенжеру с API) 
@@ -342,11 +317,22 @@ $(function(){
 $('#other_messengers').hide();
 });
 
+var check_option = $('#invitation_select').val();
+
+if (check_option==="other"){
+
 $(function(){
 $('#other').click (function(){
 $('#other_messengers').show();
 });
 });
+
+}
+else{
+$(function(){
+$('#other_messengers').hide();
+});
+}
 
 /*
 
@@ -386,14 +372,14 @@ $('#main_area').html("Here will be your messages");
 
 $(function(){
 $('#profile').click(function() {
-$('#main_area').html('<h1>Profile</h1>Profile ID: "ID"<br><br>Profile address: "Profile address" https://site_address/ID<br><br>Вася Пупкин <font color=gray>Visible to all</font><br><br>E-Mail: <font color=gray>Visible to all</font><br><br>vasya.pupkin@pupkin.com<br><br>Telefon: <font color=gray>Visible only to friends</font><br><br>+ 49 175 4523 6543<br><br>Date of birth: <font color=gray>Visible to all</font><br><br>15 апреля 1990 <br><br>Notes: <font color=gray>Visible to nobody / Private</font><br><br>Text of the note(s)<br><br><a name="settings"></a><h2>Settings</h2>Who can add me:<br><br><input type="radio" id="contacted_by_everyone" value="everyone" name="who_can_add_me">Everyone<br><input type="radio" id="contacted_by_only_authorised" value="only_authorised" name="who_can_add_me">Only authorised people<br><input type="radio" id="contacted_by_no_one" value="no_one" name="who_can_add_me">No one<br><br>    Who can contact (message) me:<br><br><input type="radio" id="contacted_by_everyone" value="everyone" name="who_can_contact_me">Everyone<br><input type="radio" id="contacted_by_only_authorised" value="only_authorised" name="who_can_contact_me">Only authorised people<br><input type="radio" id="contacted_by_no_one" value="no_one" name="who_can_contact_me">No one<br><br>     <a name="general_contact_settings"></a>I want to be informed: <br><br><input type="checkbox"> About company news<br> <input type="checkbox"> About cool and new features<h2>General contact settings</h2>How frequently to contact this contact:<br><br><input type="checkbox" id="notification_weekly" value="weekly">weekly<br><input type="checkbox" id="notification_monthly" value="monthly">monthly<br><input type="checkbox" id="notification_quarterly" value="quarterly">quarterly<br><input type="checkbox" id="notification_halfyearly" value="halfyearly">half-yearly<br><input type="checkbox" id="notification_yearly" value="yearly">yearly<br><br>How to be notified:<br><br><input type="checkbox" id="notification_by_email" value="email">per e-mail<br><input type="checkbox" id="notification_by_sms" value="sms">per sms<br><input type="checkbox" id="notification_onsite" value="onsite">on-site notifications');
+$('#main_area').html('<table><tr><td><h1>Profile</h1></td><td>&nbsp;</td><td valign=top><font color=gray>Visibility: Public</font></td><td>&nbsp;</td><td valign=top><u id="">Add new entries</u></td></tr></table>Profile ID: "ID" <font color=gray>Visiblity: Private</font><br><br>Profile address: "Profile address" https://site_address/ID <font color=gray>Visiblity: Private</font> <br><br>Вася Пупкин <font color=gray>Visible to all</font><br><br>E-Mail: <font color=gray>Visible to all</font><br><br>vasya.pupkin@pupkin.com<br><br>Telefon: <font color=gray>Visible only to friends</font><br><br>+ 49 175 4523 6543<br><br>Date of birth: <font color=gray>Visible to all</font><br><br>15 апреля 1990 <br><br>Notes: <font color=gray>Visible to nobody / Private</font><br><br>Text of the note(s)<br><br><a name="settings"></a><h2>Settings</h2>Who can add me:<br><br><input type="radio" id="contacted_by_everyone" value="everyone" name="who_can_add_me">Everyone<br><input type="radio" id="contacted_by_only_authorised" value="only_authorised" name="who_can_add_me">Only authorised people<br><input type="radio" id="contacted_by_no_one" value="no_one" name="who_can_add_me">No one<br><br>    Who can contact (message) me:<br><br><input type="radio" id="contacted_by_everyone" value="everyone" name="who_can_contact_me">Everyone<br><input type="radio" id="contacted_by_only_authorised" value="only_authorised" name="who_can_contact_me">Only authorised people<br><input type="radio" id="contacted_by_no_one" value="no_one" name="who_can_contact_me">No one<br><br>     <a name="general_contact_settings"></a>I want to be informed: <br><br><input type="checkbox"> About company news<br> <input type="checkbox"> About cool and new features<h2>General contact settings</h2>How frequently to contact this contact:<br><br><input type="checkbox" id="notification_weekly" value="weekly">weekly<br><input type="checkbox" id="notification_monthly" value="monthly">monthly<br><input type="checkbox" id="notification_quarterly" value="quarterly">quarterly<br><input type="checkbox" id="notification_halfyearly" value="halfyearly">half-yearly<br><input type="checkbox" id="notification_yearly" value="yearly">yearly<br><br>How to be notified:<br><br><input type="checkbox" id="notification_by_email" value="email">per e-mail<br><input type="checkbox" id="notification_by_sms" value="sms">per sms<br><input type="checkbox" id="notification_onsite" value="onsite">on-site notifications');
 });
 });
 
 
 $(function(){
 $('#settings').click(function() {
-$('#main_area').html('<h1>Profile</h1>Profile ID: "ID"<br><br>Profile address: "Profile address" https://site_address/ID<br><br>Вася Пупкин <font color=gray>Visible to all</font><br><br>E-Mail: <font color=gray>Visible to all</font><br><br>vasya.pupkin@pupkin.com<br><br>Telefon: <font color=gray>Visible only to friends</font><br><br>+ 49 175 4523 6543<br><br>Date of birth: <font color=gray>Visible to all</font><br><br>15 апреля 1990 <br><br>Notes: <font color=gray>Visible to nobody / Private</font><br><br>Text of the note(s)<br><br><a name="settings"></a><h2>Settings</h2>Who can add me:<br><br><input type="radio" id="contacted_by_everyone" value="everyone" name="who_can_add_me">Everyone<br><input type="radio" id="contacted_by_only_authorised" value="only_authorised" name="who_can_add_me">Only authorised people<br><input type="radio" id="contacted_by_no_one" value="no_one" name="who_can_add_me">No one<br><br>    Who can contact (message) me:<br><br><input type="radio" id="contacted_by_everyone" value="everyone" name="who_can_contact_me">Everyone<br><input type="radio" id="contacted_by_only_authorised" value="only_authorised" name="who_can_contact_me">Only authorised people<br><input type="radio" id="contacted_by_no_one" value="no_one" name="who_can_contact_me">No one<br><br>     <a name="general_contact_settings"></a><h2>General contact settings</h2>How frequently to contact this contact:<br><br><input type="checkbox" id="notification_weekly" value="weekly">weekly<br><input type="checkbox" id="notification_monthly" value="monthly">monthly<br><input type="checkbox" id="notification_quarterly" value="quarterly">quarterly<br><input type="checkbox" id="notification_halfyearly" value="halfyearly">half-yearly<br><input type="checkbox" id="notification_yearly" value="yearly">yearly<br><br>How to be notified:<br><br><input type="checkbox" id="notification_by_email" value="email">per e-mail<br><input type="checkbox" id="notification_by_sms" value="sms">per sms<br><input type="checkbox" id="notification_onsite" value="onsite">on-site notifications');
+$('#main_area').html('<table><tr><td><h1>Profile</h1></td><td>&nbsp;</td><td valign=top><font color=gray>Visibility: Public</font></td><td>&nbsp;</td><td valign=top><u id="">Add new entries</u></td></tr></table>Profile ID: "ID" <font color=gray>Visiblity: Private</font><br><br>Profile address: "Profile address" https://site_address/ID <font color=gray>Visiblity: Private</font> <br><br>Вася Пупкин <font color=gray>Visible to all</font><br><br>E-Mail: <font color=gray>Visible to all</font><br><br>vasya.pupkin@pupkin.com <u id="">Delete</u><br><br>Telefon: <font color=gray>Visible only to friends</font><br><br>+ 49 175 4523 6543 <u id="">Delete</u><br><br>Date of birth: <font color=gray>Visible to all</font><br><br>15 апреля 1990 <u class="link" id="" title="Delete this entry">Delete</u><br><br>Notes: <font color=gray>Visible to nobody / Private</font><br><br>Text of the note(s)<br><br><a name="settings"></a><h2>Settings</h2>Who can add me:<br><br><input type="radio" id="contacted_by_everyone" value="everyone" name="who_can_add_me">Everyone<br><input type="radio" id="contacted_by_only_authorised" value="only_authorised" name="who_can_add_me">Only authorised people<br><input type="radio" id="contacted_by_no_one" value="no_one" name="who_can_add_me">No one<br><br>    Who can contact (message) me:<br><br><input type="radio" id="contacted_by_everyone" value="everyone" name="who_can_contact_me">Everyone<br><input type="radio" id="contacted_by_only_authorised" value="only_authorised" name="who_can_contact_me">Only authorised people<br><input type="radio" id="contacted_by_no_one" value="no_one" name="who_can_contact_me">No one<br><br>     <a name="general_contact_settings"></a>I want to be informed: <br><br><input type="checkbox"> About company news<br> <input type="checkbox"> About cool and new features<h2>General contact settings</h2>How frequently to contact this contact:<br><br><input type="checkbox" id="notification_weekly" value="weekly">weekly<br><input type="checkbox" id="notification_monthly" value="monthly">monthly<br><input type="checkbox" id="notification_quarterly" value="quarterly">quarterly<br><input type="checkbox" id="notification_halfyearly" value="halfyearly">half-yearly<br><input type="checkbox" id="notification_yearly" value="yearly">yearly<br><br>How to be notified:<br><br><input type="checkbox" id="notification_by_email" value="email">per e-mail<br><input type="checkbox" id="notification_by_sms" value="sms">per sms<br><input type="checkbox" id="notification_onsite" value="onsite">on-site notifications');
 });
 });
 
@@ -405,9 +391,11 @@ $('#main_area').html('<h1>Profile</h1>Profile ID: "ID"<br><br>Profile address: "
 
 <script>
 
+$('#area_contact_settings_particular_contact').hide();
+
 $(function(){
 $('#contact_settings_particular_contact').click (function(){
-$('#area_contact_settings_particular_contact').html('How frequently to contact this contact:<br><br><input type="checkbox" id="notification_weekly" value="weekly">weekly<br><input type="checkbox" id="notification_monthly" value="monthly">monthly<br><input type="checkbox" id="notification_quarterly" value="quarterly">quarterly<br><input type="checkbox" id="notification_halfyearly" value="halfyearly">half-yearly<br><input type="checkbox" id="notification_yearly" value="yearly">yearly<br><br>How to be notified:<br><br><input type="checkbox" id="notification_by_email" value="email">per e-mail<br><input type="checkbox" id="notification_by_sms" value="sms">per sms<br><input type="checkbox" id="notification_onsite" value="onsite">on-site notifications');
+$('#area_contact_settings_particular_contact').toggle();
 });
 });
 

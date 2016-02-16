@@ -9,84 +9,175 @@
 <!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script> -->
 </head>
 <body>
-
-<form id="" name="">
-<input name="" id="web_id" type="hidden" value="NULL"></input><br>
-First name: <input name="" id="first_name" type="text"></input><br>
-Last name: <input name="" id="last_name" type="text"></input><br>
-Father's name: <input name="" id="father_name" type="text" title="In some countries it's important" placeholder="In some countries it's important"></input><br>
+<table border=0><tr><td valign="middle"><h2>Your profile</h2></td><td>&nbsp;<td><td valign="top"> <span title="Define here, who can see your profile">Privacy:</span> <select><option>Everyone (Public)</option><option>Only selected contacts</option><option>Only me (Private)</option></select></td><td>&nbsp;</td><td align=right valign=top><u>See how others see my profile</u></td></tr></table>
+<table width=100%>
+<tr>
+<td width=48% valign=top>
+<form name="" id="">
+<input type="hidden" value="NULL" id="web_id" name=""><br>
+  First name: <input type="text" id="first_name" name=""> <span title="Define here, who can see this entry?">Privacy:</span> <select><option>Everyone (Public)</option><option>Only selected contacts</option><option>Only me (Private)</option></select>
+  <br>
+Last name: <input type="text" id="last_name" name="">  <span title="Define here, who can see this entry?">Privacy:</span>  <select><option>Everyone (Public)</option><option>Only selected contacts</option><option>Only me (Private)</option></select>
+  <br>
+Father's name: <input type="text" placeholder="In some countries it's important" title="In some countries it's important" id="father_name" name="">  <span title="Define here, who can see this entry?">Privacy:</span>  <select><option>Everyone (Public)</option><option>Only selected contacts</option><option>Only me (Private)</option></select>
+  <br>
 
 <br>
 
-Nickname: <input name="" id="nickname" type="text" placeholder="Real nickname in real life :)" title="Just in case he or she had one"></input><br>
+Nickname: <input type="text" title="Just in case he or she had one" placeholder="Real nickname in real life :)" id="nickname" name="">  <span title="Define here, who can see this entry?">Privacy:</span>  <select><option>Everyone (Public)</option><option>Only selected contacts</option><option>Only me (Private)</option></select>
+  <br>
 
 <br>
 
-Date of birth: <input name="" id="date_of_birth" type="date"></input><br>
+Date of birth: <input type="date" id="date_of_birth" name="">  <span title="Define here, who can see this entry?">Privacy:</span>  <select><option>Everyone (Public)</option><option>Only selected contacts</option><option>Only me (Private)</option></select>
+  <br>
 
 <h4>Email(s)</h4>
-
-Business email: <input name="" id="email_business" type="email"></input><br>
-Private email: <input name="" id="email_private" type="email"></input><br>
-Other email: <input name="" id="email_other" type="email"></input><br>
+<select><option>Private email</option><option>Business email</option><option>Other email</option></select> <u id="add_email_click">Add</u>
+<div id="emails">
+Private email: <input type="email" id="email_private" name=""> <span title="Define here, who can see this entry?">Privacy:</span> <select><option>Everyone (Public)</option><option>Only selected contacts</option><option>Only me (Private)</option></select>
+  <br>
+Business email: <input type="email" id="email_business" name=""> <span title="Define here, who can see this entry?">Privacy:</span> <select><option>Everyone (Public)</option><option>Only selected contacts</option><option>Only me (Private)</option></select>
+  <br>
+Other email: <input type="email" id="email_other" name=""> <span title="Define here, who can see this entry?">Privacy:</span> <select><option>Everyone (Public)</option><option>Only selected contacts</option><option>Only me (Private)</option></select>
+</div>
+  <br>
 
 <h4>Phone(s)</h4>
 
-Private mobile phone: <input name="" id="private_mobile_phone" type="telephone"></input><br>
-Private landline phone: <input name="" id="telephone_private" type="telephone"></input><br>
-Business landline phone: <input name="" id="business_landline_phone" type="telephone"></input><br>
-Business mobile phone: <input name="" id="telephone_business_mobile" type="telephone"></input><br>
-Other phone: <input name="" id="telephone_other" type="telephone"></input><br>
 
-<h4>Business address</h4>
 
-Address line: <input name="" id="business_address_street_n_house" type="text"></input><br>
-Additional line: <input name="" id="business_address_additional_line" type="text"></input><br>
-Postcode: <input name="" id="business_address_postcode" type="text"></input><br>
-City: <input name="" id="business_address_city" type="text"></input><br>
-Country: <input name="" id="business_address_country" type="text"></input><br>
+<select id="phone_select1"><option value="private">private</option><option value="business">business</option><option value="other1">other</option></select> <select id="phone_select2"><option value="mobile_phone">mobile phone</option><option value="landline_phone">landline phone</option><option value="other2">other</option></select> <u id="add_phone_click">Add</u>
+<br><br>
+<div id="phones">
+Private mobile phone: <input type="telephone" id="private_mobile_phone" name=""> Privacy: [<u class="link" title="Who can see this entry?">?</u>] <select><option>Everyone (Public)</option><option>Only selected contacts</option><option>Only me (Private)</option></select>
+  <br>
+Private landline phone: <input type="telephone" id="telephone_private" name=""> Privacy: [<u class="link" title="Who can see this entry?">?</u>] <select><option>Everyone (Public)</option><option>Only selected contacts</option><option>Only me (Private)</option></select>
+  <br>
+Business landline phone: <input type="telephone" id="business_landline_phone" name=""> Privacy: [<u class="link" title="Who can see this entry?">?</u>] <select><option>Everyone (Public)</option><option>Only selected contacts</option><option>Only me (Private)</option></select>
+  <br>
+Business mobile phone: <input type="telephone" id="telephone_business_mobile" name=""> Privacy: [<u class="link" title="Who can see this entry?">?</u>] <select><option>Everyone (Public)</option><option>Only selected contacts</option><option>Only me (Private)</option></select>
+  <br>
+Other phone: <input type="telephone" id="telephone_other" name=""> Privacy: [<u class="link" title="Who can see this entry?">?</u>] <select><option>Everyone (Public)</option><option>Only selected contacts</option><option>Only me (Private)</option></select>
+</div>
+  <br>
 
-<h4>Private address</h4>
+<h4>Address(es)</h4>
 
-Address line: <input name="" id="private_address_street_n_house" type="text"></input><br>
-Additional line: <input name="" id="private_address_additional_line" type="text"></input><br>
-Postcode: <input name="" id="private_address_postcode" type="text"></input><br>
-City: <input name="" id="private_address_city" type="text"></input><br>
-Country: <input name="" id="private_address_country" type="text"></input><br>
+<select><option>private address</option><option>business address</option><option>other address</option></select> <u id="add_address_click">Add</u>
 
-<h4>Other address</h4>
+<br><br>
 
-Address line: <input name="" id="other_address_street_n_house" type="text"></input><br>
-Additional line: <input name="" id="other_address_additional_line" type="text"></input><br>
-Postcode: <input name="" id="other_address_postcode" type="text"></input><br>
-City: <input name="" id="other_address_city" type="text"></input><br>
-Country: <input name="" id="other_address_country" type="text"></input><br>
+<div id="addresses_div">
 
-<h4>Website and social network accounts</h4>
+<br>
+<table border="0"><tbody><tr><td valign="middle"><h4>Business address</h4></td><td>&nbsp;</td><td valign="top"><span title="Define here, who can see this entry?">Privacy:</span> <select><option>Everyone (Public)</option><option>Only selected contacts</option><option>Only me (Private)</option></select></td></tr></tbody></table>
+Address line: <input type="text" id="business_address_street_n_house" name=""><br>
+Additional line: <input type="text" id="business_address_additional_line" name=""><br>
+Postcode: <input type="text" id="business_address_postcode" name=""><br>
+City: <input type="text" id="business_address_city" name=""><br>
+Country: <input type="text" id="business_address_country" name=""><br>
 
-Mobile website: <input name="" id="mobile_website" type="website"></input><br>
-Business website: <input name="" id="business_website" type="website"></input><br>
-Private website: <input name="" id="private_website" type="website"></input><br>
-Family website: <input name="" id="family_website" type="website"></input><br>
-Other website: <input name="" id="other_website" type="website"></input><br>
-Mobile blog: <input name="" id="mobile_blog" type="website"></input><br>
-Business blog: <input name="" id="business_blog" type="website"></input><br>
-Private blog: <input name="" id="private_blog" type="website"></input><br>
-Family blog: <input name="" id="family_blog" type="website"></input><br>
-Other blog: <input name="" id="other_blog" type="website"></input><br>
-Facebook: <input name="" id="facebook" type="website"></input><br>
-VK: <input name="vk" id="vk" type="website" title=""></input><br>
-Twitter:<input name="" id="twitter" type="website"></input><br>
-Tumblr: <input name="" id="tumblr" type="website"></input><br>
-Pinterest: <input name="" id="pinterest" type="website"></input><br>
-Google Plus: <input name="" id="google_plus" type="website"></input><br>
-Weibo: <input name="" id="weibo" type="website"></input><br>
-Instagram: <input name="" id="instagram" type="website"></input><br>
-Linkedin: <input name="" id="linkedin" type="website"></input><br>
-Xing: <input name="" id="xing" type="website"></input><br>
-Other: <input name="" id="other_social_network" type="website"></input><br>
-Notes: <textarea name="" id="notes"></textarea><br> 
+<table border="0"><tbody><tr><td valign="middle"><h4>Private address</h4></td><td>&nbsp;</td><td valign="top"><span title="Define here, who can see this entry?">Privacy:</span> <select><option>Everyone (Public)</option><option>Only selected contacts</option><option>Only me (Private)</option></select></td></tr></tbody></table>
+
+Address line: <input type="text" id="private_address_street_n_house" name=""><br>
+Additional line: <input type="text" id="private_address_additional_line" name=""><br>
+Postcode: <input type="text" id="private_address_postcode" name=""><br>
+City: <input type="text" id="private_address_city" name=""><br>
+Country: <input type="text" id="private_address_country" name=""><br>
+
+<table border="0"><tbody><tr><td valign="middle"><h4>Other address</h4></td><td>&nbsp;</td><td valign="top"><span title="Define here, who can see this entry?">Privacy:</span> <select><option>Everyone (Public)</option><option>Only selected contacts</option><option>Only me (Private)</option></select></td></tr></tbody></table>
+
+Address line: <input type="text" id="other_address_street_n_house" name=""><br>
+Additional line: <input type="text" id="other_address_additional_line" name=""><br>
+Postcode: <input type="text" id="other_address_postcode" name=""><br>
+City: <input type="text" id="other_address_city" name=""><br>
+Country: <input type="text" id="other_address_country" name=""><br>
+
+</div>
+<br>
+
+<table border="0"><tbody><tr><td valign="middle"><h4>Website(s)</h4></td><td>&nbsp;</td><td valign="top"><span title="Define here, who can see this entry?">Privacy:</span> <select><option>Everyone (Public)</option><option>Only selected contacts</option><option>Only me (Private)</option></select></td></tr></tbody></table>
+
+<select><option>Mobile</option><option>Business</option><option>Private</option><option>Family</option><option>Other</option></select> <select><option>website</option><option>blog</option></select> <u id="add_website_click">Add</u>
+
+<br><br>
+<div id="websites_div">
+Mobile website: <input type="website" id="mobile_website" name="">  <span title="Define here, who can see this entry?">Privacy:</span>  <select><option>Everyone (Public)</option><option>Only selected contacts</option><option>Only me (Private)</option></select>
+<br>
+Business website: <input type="website" id="business_website" name="">  <span title="Define here, who can see this entry?">Privacy:</span>  <select><option>Everyone (Public)</option><option>Only selected contacts</option><option>Only me (Private)</option></select>
+<br>
+Private website: <input type="website" id="private_website" name="">  <span title="Define here, who can see this entry?">Privacy:</span>  <select><option>Everyone (Public)</option><option>Only selected contacts</option><option>Only me (Private)</option></select>
+<br>
+Family website: <input type="website" id="family_website" name="">  <span title="Define here, who can see this entry?">Privacy:</span>  <select><option>Everyone (Public)</option><option>Only selected contacts</option><option>Only me (Private)</option></select>
+<br>
+Other website: <input type="website" id="other_website" name="">  <span title="Define here, who can see this entry?">Privacy:</span>  <select><option>Everyone (Public)</option><option>Only selected contacts</option><option>Only me (Private)</option></select>
+<br>
+Mobile blog: <input type="website" id="mobile_blog" name="">  <span title="Define here, who can see this entry?">Privacy:</span>  <select><option>Everyone (Public)</option><option>Only selected contacts</option><option>Only me (Private)</option></select>
+<br>
+Business blog: <input type="website" id="business_blog" name="">  <span title="Define here, who can see this entry?">Privacy:</span>  <select><option>Everyone (Public)</option><option>Only selected contacts</option><option>Only me (Private)</option></select>
+<br>
+Private blog: <input type="website" id="private_blog" name="">  <span title="Define here, who can see this entry?">Privacy:</span>  <select><option>Everyone (Public)</option><option>Only selected contacts</option><option>Only me (Private)</option></select>
+<br>
+Family blog: <input type="website" id="family_blog" name="">  <span title="Define here, who can see this entry?">Privacy:</span>  <select><option>Everyone (Public)</option><option>Only selected contacts</option><option>Only me (Private)</option></select>
+<br>
+Other blog: <input type="website" id="other_blog" name="">  <span title="Define here, who can see this entry?">Privacy:</span>  <select><option>Everyone (Public)</option><option>Only selected contacts</option><option>Only me (Private)</option></select>
+</div>
+
+<br><br>
+
+<table><tr><td><h4>Social network accounts</h4></td><td>&nbsp;</td><td><span title="Define here, who can see this section">Privacy:</span><select><option>Everyone (Public)</option><option>Only selected contacts</option><option>Only me (Private)</option></select></td></tr></table>
+<br>
+
+<select>
+<option>Facebook</option>
+<option>VK</option>
+<option>Weibo</option>
+<option>Linkedin</option>
+<option>Xing</option>
+<option>Google Plus</option>
+<option>Instagram</option>
+<option>Twitter</option>
+<option>Tumblr</option>
+<option>Pinterest</option>
+<option>Snapchat</option>
+<option>Other</option>
+</select> <u id="add_social_n_business_networks_click">Add</u>
+<br><br>
+<div id="social_networks_div">
+Facebook: <input type="website" id="facebook" name="">  <span title="Define here, who can see this entry?">Privacy:</span>  <select><option>Everyone (Public)</option><option>Only selected contacts</option><option>Only me (Private)</option></select>
+<br>
+VK: <input type="website" title="" id="vk" name="vk">  <span title="Define here, who can see this entry?">Privacy:</span>  <select><option>Everyone (Public)</option><option>Only selected contacts</option><option>Only me (Private)</option></select>
+<br>
+Twitter:<input type="website" id="twitter" name="">  <span title="Define here, who can see this entry?">Privacy:</span>  <select><option>Everyone (Public)</option><option>Only selected contacts</option><option>Only me (Private)</option></select>
+<br>
+Tumblr: <input type="website" id="tumblr" name="">  <span title="Define here, who can see this entry?">Privacy:</span>  <select><option>Everyone (Public)</option><option>Only selected contacts</option><option>Only me (Private)</option></select>
+<br>
+Pinterest: <input type="website" id="pinterest" name="">  <span title="Define here, who can see this entry?">Privacy:</span>  <select><option>Everyone (Public)</option><option>Only selected contacts</option><option>Only me (Private)</option></select>
+<br>
+Google Plus: <input type="website" id="google_plus" name="">  <span title="Define here, who can see this entry?">Privacy:</span>  <select><option>Everyone (Public)</option><option>Only selected contacts</option><option>Only me (Private)</option></select>
+<br>
+Weibo: <input type="website" id="weibo" name="">  <span title="Define here, who can see this entry?">Privacy:</span>  <select><option>Everyone (Public)</option><option>Only selected contacts</option><option>Only me (Private)</option></select>
+<br>
+Instagram: <input type="website" id="instagram" name="">  <span title="Define here, who can see this entry?">Privacy:</span>  <select><option>Everyone (Public)</option><option>Only selected contacts</option><option>Only me (Private)</option></select>
+<br>
+Linkedin: <input type="website" id="linkedin" name="">  <span title="Define here, who can see this entry?">Privacy:</span>  <select><option>Everyone (Public)</option><option>Only selected contacts</option><option>Only me (Private)</option></select>
+<br>
+Xing: <input type="website" id="xing" name="">  <span title="Define here, who can see this entry?">Privacy:</span>  <select><option>Everyone (Public)</option><option>Only selected contacts</option><option>Only me (Private)</option></select>
+<br>
+Other: <input type="website" id="other_social_network" name="">  <span title="Define here, who can see this entry?">Privacy:</span>  <select><option>Everyone (Public)</option><option>Only selected contacts</option><option>Only me (Private)</option></select>
+</div>
+</td>
+<td width=4%></td>
+<td width=48% valign=top>
+Notes: <textarea id="notes" name=""></textarea>  <span title="Define here, who can see this entry?">Privacy:</span>  <select><option>Everyone (Public)</option><option>Only selected contacts</option><option>Only me (Private)</option></select>
+<br> 
 </form>
+
+</td>
+</tr>
+</table>
+
 
 <script>
 
@@ -154,7 +245,53 @@ var contacts = '{ "web_id": web_id, "first_name": first_name, "last_name": last_
 '{ "mobile": mobile_blog },' + '{ "business": business_blog },' + '{ "private": private_blog },' + '{ "family": family_blog },' + '{ "other": other_blog }], "social_networks": [' + 
 '{ "tumblr": tumblr },' + '{ "twitter": twitter },' + '{ "facebook": facebook },' + '{ "google_plus": google_plus },' + '{ "weibo": weibo },' + '{ "vk": vk },' + '{ "instagram": instagram },' + '{ "pinterest": pinterest },' + '{ "linkedin": linkedin },' + '{ "xing": xing },' + '{ "other": other_social_network }], "last_contacted": date_last_contacted, "message_history": message_history, "ip_address": ip_address, "notes": notes, "admin_notes": admin_notes }';
 
-};
+
+
+$(function(){
+
+$('#phones').hide();
+$('#emails').hide();
+$('#social_networks_div').hide();
+$('#websites_div').hide();
+$('#addresses_div').hide();
+
+
+var var1 = $('#phone_select1').val();
+var var2 = $('#phone_select2').val();
+
+
+if ($var1==="private" && $var2==="mobile_phone"){
+
+}
+else if ($var1==="private" && $var2==="mobile_phone") {
+
+}
+else {
+
+}
+if ($var1==="business" && $var2==="mobile_phone"){
+
+}
+else if ($var1==="business" && $var2==="mobile_phone") {
+
+}
+else {
+
+}
+if ($var1==="business" && $var2==="mobile_phone"){
+
+}
+else if ($var1==="business" && $var2==="mobile_phone") {
+
+}
+else {
+
+}
+
+$('#add_phone_click').click (function() {
+
+});
+});
 
 </script>
 
