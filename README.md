@@ -8,4 +8,6 @@ It connects social media and e-mail accounts and reminds you when you have to co
 
 It also colours your contact entries in an urgency color. 
 
+It's simply your new and a much better contact tool.
+
 

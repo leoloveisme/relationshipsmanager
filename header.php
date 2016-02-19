@@ -5,8 +5,8 @@
 <a href="" target="" title="">Logotype and link to the index page</a>
 </td>
 <td align=right valign=top>
-<a href="">Home</a> | <u id="profile" title="Profile">Profile</u> | <u id="messages_link" title="Messages">Messages</u> | <u id="settings" title="Settings">Settings</u> | Logout
-<br><br>
+<!--<a href="">Home</a> | <u id="profile" title="Profile">Profile</u> | <u id="messages_link" title="Messages">Messages</u> | <u id="settings" title="Settings">Settings</u> | Logout
+<br><br>-->
 Hello, <b>guest</b>. <u id="register" title="Register">Register</u> <u id="login_menu" title="Login">Login</u>
 </td>
 </tr>
