@@ -8,7 +8,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
 </head>
 <body>
-<p><a name="top"></a> <?php include ("header.php"); ?></p>
+<p><a name="top"></a> <?php include ("header"); ?></p>
 
 <p>&nbsp;</p>
 
@@ -398,17 +398,21 @@ $('#other_messengers').hide();
 });
 }
 
+
 $(function(){
 $('#register').click(function() {
 $('#main_area').html('<table width=100% border=0><tr><td>E-mail:</td><td><input type="hidden" id="web_id"><input id="email" placeholder="Your e-mail, please"></td><td colspan=2></td></tr><tr><td>Password:</td> <td><input id="password" type="password"></td><td>Repeat password, please:</td><td><input id="password_repeat" type="password"></td><tr><td colspan=4><input id="" type="checkbox"> Please, check the box that you have read, understood and agree with all our terms | <a href="agbs.php" id="" name="" title="">Terms</a></td></tr><tr><td colspan=4> Please, check the box(es) if you want to be informed about our news <input id="" type="checkbox" title="Yes, please send me your cool news"> and cool feature updates<input id="" type="checkbox" title="Yes, please inform me about your cool features and updates"></td></tr><tr><td colspan=3></td><td valign=bottom align="right"><button id="send">Send</button></td></tr></table>');
 });
 });
 
+
 $(function(){
 $('#login_menu').click(function() {
 $('#main_area').html('<table width=100% border=0><tr><td>E-mail:</td><td><input id="email" placeholder="Your e-mail, please"></td><td>Password:</td><td><input id="password" type="password"></td></tr><tr><td colspan=2><a href="forgot_password.php" id="forgot_password" title="Forgot password?">Forgot password?</a></td><td colspan=2 align="right"><button id="login">Login</button></td></tr></table>');
 });
 });
+
+
 
 /* эти две функции ниже не работают 
 
@@ -430,7 +434,7 @@ $('#main_area').html('Работает');
 
 <!--  -->
 
-<?php include("footer.php"); ?>
+<?php include("footer"); ?>
 
 <p>&nbsp;</p>
 </body>
