@@ -1,77 +1,46 @@
-# Relationshipsmanager
+# Fossify Contacts
+<img alt="Logo" src="graphics/icon.webp" width="120" />
 
-Relationshipsmanager is the tool to stay in touch with people and build remarkable relationships.
+<a href='https://play.google.com/store/apps/details?id=org.fossify.contacts'><img alt='Get it on Google Play' src='https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png' height=80/></a> <a href="https://f-droid.org/packages/org.fossify.contacts/"><img src="https://fdroid.gitlab.io/artwork/badge/get-it-on-en.svg" alt="Get it on F-Droid" height=80/></a> <a href="https://apt.izzysoft.de/fdroid/index/apk/org.fossify.contacts"><img src="https://gitlab.com/IzzyOnDroid/repo/-/raw/master/assets/IzzyOnDroid.png" alt="Get it on IzzyOnDroid" height=80/></a>
 
-Think extended contact app like e.g. Fossify Contacts with additional functionality
+Introducing Fossify Contacts - the next evolution in contact management. Poised to redefine how you manage your contacts, our app combines simplicity with advanced features, tailored for both personal and professional use.  
 
-Relationshipsmanager is software for:
+🔍 **SMART SEARCH & FIELD CUSTOMIZATION:**  
+Locate contacts quickly with our intelligent search feature. Customize visible fields, enjoy a user-friendly interface, and find contacts effortlessly, saving time and enhancing productivity.
 
-mobile devices (apps)
-web (app) 
-and
-your computer (later)
+✉️ **GROUP MANAGEMENT & COMMUNICATION:**  
+Effortlessly manage contact groups for streamlined communication. Our app facilitates easy grouping for batch emails or SMS, with features to create favorite lists and rename groups, enhancing your organizational capabilities.
 
-It colours your contact entries in defined (by users) urgency colors e.g. green (you are ok in terms of contacting this person), yellow (soon you will need to contact the person), orange (you need to contact the person), red (the contacting of the person is overdue).
+🔄 **RELIABLE BACKUP & EXPORT OPTIONS:**  
+Ensure your contacts are always safe with our reliable backup system. Seamlessly export or import contacts in vCard format, making data migration and backup a breeze.
 
-User can define him- / herself how many days will constitute how many days will define the colors
+🌐 **OPEN-SOURCE TRANSPARENCY:**  
+Built on an open-source platform, Fossify Contacts champions transparency and user trust. Access our code on GitHub and become part of a community that values privacy, openness, and collaborative improvement.
 
-e.g. 
+🖼️ **PERSONALIZED USER EXPERIENCE:**  
+Customize your contact management with ease. Our app offers flexible settings and design options, allowing you to tailor the interface to your liking. Sort contacts, choose themes, and personalize your experience for maximum convenience.
 
-entry (each entry has independent settings)
+🔋 **EFFICIENT & LIGHTWEIGHT:**  
+Optimized for performance, Fossify Contacts is designed to be light on your device's resources. It not only organizes your contacts efficiently but also contributes to longer battery life, ensuring smooth operation.
 
-Mother 
+🚀 **ADVANCED SYNCHRONIZATION:**  
+Whether you choose to store your contacts locally or prefer syncing them across devices using different means, our app ensures a smooth, efficient, and secure management experience.
 
-green < 7 days
-yellow < 14 days
-orange < 21 days
-red > 30 days
+🔐 **PRIVACY-FIRST APPROACH:**  
+Your contact information remains confidential with Fossify Contacts. We prioritize your privacy, ensuring your data is never shared with third-party apps.
 
-Nephew
+🌙 **MODERN DESIGN & USER-FRIENDLY INTERFACE:**  
+Enjoy a clean, modern design with a user-friendly interface. The app features material design themes and a supports dynamic theming, providing a visually appealing and comfortable user experience.
 
-green < 14 days
-yellow < 30 days
-orange < 45 days
-red > 60 days
+Download the app now and elevate your contact management to new heights. Your journey to efficient, secure, and intuitive contact organization begins here.
 
-etc
+➡️ Explore more Fossify apps: https://www.fossify.org<br>
+➡️ Open-Source Code: https://www.github.com/FossifyOrg<br>
+➡️ Join the community on Reddit: https://www.reddit.com/r/Fossify<br>
+➡️ Connect on Telegram: https://t.me/Fossify
 
-groups:
-
-e.g.
-
-Favorites
-Friends
-Close friends
-Family
-Relatives
-etc
-
-Users can CRUD 
-
-- entries (add new ones, delete existing ones, modify, etc)
-- groups (add new groups, modify existing ones, rename, delete - danger zone)
-
-Deleting group doesn't delete the entries in the app (and in the database)
-
-Each group and each contact entry (even within a group) can have independent settings
-
-Contact entry can be part of various groups
-
-Relationshipsmanager can connect social media and e-mail accounts if user decides to do so and reminds him / her when (s)he have to contact his / her contacts.
-
-
-Scenario:
-
-User has contacted his / her mother by telephone or was contacted by his / her mother by telephone  - the day count is resetted. 
-
-User can also manually reset the day count in the entry at any time
-
-
-The software can work both online and offline with automatic synchonisation with relationshipsmanager database and / or cloud storage - database in the form of files - extended contact detail files with **history** of contacts, etc if user decides so / when user activates sync (sync can also be deactivated - checkbox)
-
-
-Relationshipsmanager is simply the new and a much better relationships managing tool.
-
-More features and functionality is yet to come. 
-
-
+<div align="center">
+<img alt="App image" src="fastlane/metadata/android/en-US/images/phoneScreenshots/1_en-US.png" width="30%">
+<img alt="App image" src="fastlane/metadata/android/en-US/images/phoneScreenshots/2_en-US.png" width="30%">
+<img alt="App image" src="fastlane/metadata/android/en-US/images/phoneScreenshots/3_en-US.png" width="30%">
+</div>
