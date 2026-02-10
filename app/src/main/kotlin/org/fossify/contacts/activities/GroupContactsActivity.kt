@@ -16,10 +16,15 @@ import org.fossify.contacts.R
 import org.fossify.contacts.adapters.ContactsAdapter
 import org.fossify.contacts.databinding.ActivityGroupContactsBinding
 import org.fossify.contacts.dialogs.SelectContactsDialog
+import org.fossify.contacts.dialogs.UrgencySettingsDialog
+import org.fossify.contacts.extensions.config
 import org.fossify.contacts.extensions.handleGenericContactClick
+import org.fossify.contacts.extensions.relationshipRepository
 import org.fossify.contacts.extensions.viewContact
 import org.fossify.contacts.helpers.GROUP
 import org.fossify.contacts.helpers.LOCATION_GROUP_CONTACTS
+import org.fossify.contacts.helpers.UrgencyThresholds
+import org.fossify.contacts.models.GroupUrgencySettings
 import org.fossify.contacts.interfaces.RefreshContactsListener
 import org.fossify.contacts.interfaces.RemoveFromGroupListener
 
@@ -76,6 +81,7 @@ class GroupContactsActivity : SimpleActivity(), RemoveFromGroupListener, Refresh
                 R.id.send_sms_to_group -> sendSMSToGroup()
                 R.id.send_email_to_group -> sendEmailToGroup()
                 R.id.assign_ringtone_to_group -> assignRingtoneToGroup()
+                R.id.configure_group_urgency -> configureGroupUrgency()
                 else -> return@setOnMenuItemClickListener false
             }
             return@setOnMenuItemClickListener true
@@ -186,6 +192,37 @@ class GroupContactsActivity : SimpleActivity(), RemoveFromGroupListener, Refresh
             removeContactsFromGroup(contacts, group.id!!)
             if (groupContacts.size == contacts.size) {
                 refreshContacts()
+            }
+        }
+    }
+
+    private fun configureGroupUrgency() {
+        val groupId = group.id ?: return
+        ensureBackgroundThread {
+            val existing = relationshipRepository.getGroupUrgencySettings(groupId)
+            val thresholds = UrgencyThresholds(
+                green = existing?.greenThresholdDays ?: config.urgencyDefaultGreen,
+                yellow = existing?.yellowThresholdDays ?: config.urgencyDefaultYellow,
+                orange = existing?.orangeThresholdDays ?: config.urgencyDefaultOrange,
+                red = existing?.redThresholdDays ?: config.urgencyDefaultRed
+            )
+            runOnUiThread {
+                UrgencySettingsDialog(this, R.string.configure_group_urgency, thresholds) { result ->
+                    ensureBackgroundThread {
+                        relationshipRepository.upsertGroupUrgencySettings(
+                            GroupUrgencySettings(
+                                groupId = groupId,
+                                greenThresholdDays = result.green,
+                                yellowThresholdDays = result.yellow,
+                                orangeThresholdDays = result.orange,
+                                redThresholdDays = result.red
+                            )
+                        )
+                        runOnUiThread {
+                            toast(R.string.urgency_settings_saved)
+                        }
+                    }
+                }
             }
         }
     }

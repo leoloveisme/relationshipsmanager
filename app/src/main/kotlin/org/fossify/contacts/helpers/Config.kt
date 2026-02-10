@@ -18,4 +18,20 @@ class Config(context: Context) : BaseConfig(context) {
         set(autoBackupContactSources) = prefs.edit().remove(AUTO_BACKUP_CONTACT_SOURCES).putStringSet(AUTO_BACKUP_CONTACT_SOURCES, autoBackupContactSources)
             .apply()
 
+    var urgencyDefaultGreen: Int
+        get() = prefs.getInt(URGENCY_DEFAULT_GREEN, 7)
+        set(value) = prefs.edit().putInt(URGENCY_DEFAULT_GREEN, value).apply()
+
+    var urgencyDefaultYellow: Int
+        get() = prefs.getInt(URGENCY_DEFAULT_YELLOW, 14)
+        set(value) = prefs.edit().putInt(URGENCY_DEFAULT_YELLOW, value).apply()
+
+    var urgencyDefaultOrange: Int
+        get() = prefs.getInt(URGENCY_DEFAULT_ORANGE, 21)
+        set(value) = prefs.edit().putInt(URGENCY_DEFAULT_ORANGE, value).apply()
+
+    var urgencyDefaultRed: Int
+        get() = prefs.getInt(URGENCY_DEFAULT_RED, 30)
+        set(value) = prefs.edit().putInt(URGENCY_DEFAULT_RED, value).apply()
+
 }

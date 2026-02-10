@@ -24,6 +24,9 @@ const val KEY_NAME = "name"
 const val KEY_EMAIL = "email"
 const val KEY_MAILTO = "mailto"
 
+// Custom sort constant – must not collide with Fossify Commons SORT_BY_* bits (1–64)
+const val SORT_BY_URGENCY = 256
+
 const val LOCATION_CONTACTS_TAB = 0
 const val LOCATION_FAVORITES_TAB = 1
 const val LOCATION_GROUP_CONTACTS = 2
@@ -77,6 +80,19 @@ enum class UrgencyLevel(val colorResId: Int) {
     RED(R.color.urgency_red),
     NONE(R.color.urgency_none)
 }
+
+data class UrgencyThresholds(
+    val green: Int,
+    val yellow: Int,
+    val orange: Int,
+    val red: Int,
+    val enabled: Boolean = true
+)
+
+const val URGENCY_DEFAULT_GREEN = "urgency_default_green"
+const val URGENCY_DEFAULT_YELLOW = "urgency_default_yellow"
+const val URGENCY_DEFAULT_ORANGE = "urgency_default_orange"
+const val URGENCY_DEFAULT_RED = "urgency_default_red"
 
 // 6 am is the hardcoded automatic backup time, intervals shorter than 1 day are not yet supported.
 fun getNextAutoBackupTime(): DateTime {

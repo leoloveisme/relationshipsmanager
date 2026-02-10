@@ -27,11 +27,13 @@ import org.fossify.contacts.R
 import org.fossify.contacts.databinding.*
 import org.fossify.contacts.dialogs.ChooseSocialDialog
 import org.fossify.contacts.dialogs.ManageVisibleFieldsDialog
+import org.fossify.contacts.dialogs.UrgencySettingsDialog
 import android.graphics.drawable.GradientDrawable
 import androidx.core.content.ContextCompat
 import org.fossify.contacts.extensions.*
 import org.fossify.contacts.helpers.*
 import org.fossify.contacts.models.ContactInteraction
+import org.fossify.contacts.models.ContactUrgencySettings
 import java.util.Locale
 
 class ViewContactActivity : ContactActivity() {
@@ -126,6 +128,11 @@ class ViewContactActivity : ContactActivity() {
                         initContact()
                     }
                 }
+                true
+            }
+
+            findItem(R.id.configure_urgency).setOnMenuItemClickListener {
+                configureContactUrgency()
                 true
             }
         }
@@ -335,6 +342,40 @@ class ViewContactActivity : ContactActivity() {
                         )
                         runOnUiThread {
                             toast(R.string.contact_marked)
+                            setupUrgencyStatus()
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    private fun configureContactUrgency() {
+        val currentContact = contact ?: return
+        ensureBackgroundThread {
+            val existing = relationshipRepository.getUrgencySettings(currentContact.id)
+            val thresholds = UrgencyThresholds(
+                green = existing?.greenThresholdDays ?: config.urgencyDefaultGreen,
+                yellow = existing?.yellowThresholdDays ?: config.urgencyDefaultYellow,
+                orange = existing?.orangeThresholdDays ?: config.urgencyDefaultOrange,
+                red = existing?.redThresholdDays ?: config.urgencyDefaultRed,
+                enabled = existing?.enabled ?: true
+            )
+            runOnUiThread {
+                UrgencySettingsDialog(this, R.string.configure_contact_urgency, thresholds, showEnabledToggle = true) { result ->
+                    ensureBackgroundThread {
+                        relationshipRepository.upsertUrgencySettings(
+                            ContactUrgencySettings(
+                                contactId = currentContact.id,
+                                greenThresholdDays = result.green,
+                                yellowThresholdDays = result.yellow,
+                                orangeThresholdDays = result.orange,
+                                redThresholdDays = result.red,
+                                enabled = result.enabled
+                            )
+                        )
+                        runOnUiThread {
+                            toast(R.string.urgency_settings_saved)
                             setupUrgencyStatus()
                         }
                     }

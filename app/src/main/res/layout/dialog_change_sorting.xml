@@ -60,6 +60,14 @@
                 android:text="@string/date_created" />
 
             <org.fossify.commons.views.MyCompatRadioButton
+                android:id="@+id/sorting_dialog_radio_urgency"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="@dimen/medium_margin"
+                android:paddingBottom="@dimen/medium_margin"
+                android:text="@string/urgency" />
+
+            <org.fossify.commons.views.MyCompatRadioButton
                 android:id="@+id/sorting_dialog_radio_custom"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

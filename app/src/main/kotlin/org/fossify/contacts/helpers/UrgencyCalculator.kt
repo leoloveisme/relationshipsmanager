@@ -2,11 +2,13 @@ package org.fossify.contacts.helpers
 
 import android.content.Context
 import org.fossify.commons.models.contacts.Contact
+import org.fossify.contacts.extensions.config
 import org.fossify.contacts.models.ContactUrgencySettings
 import java.util.concurrent.TimeUnit
 
 class UrgencyCalculator(context: Context) {
     private val repository = RelationshipRepository(context)
+    private val config = context.config
 
     fun calculateUrgency(contact: Contact): UrgencyLevel {
         val settings = repository.getUrgencySettings(contact.id)
@@ -29,7 +31,13 @@ class UrgencyCalculator(context: Context) {
     fun calculateBatchUrgency(contacts: List<Contact>): Map<Int, UrgencyLevel> {
         val allContactSettings = repository.getAllUrgencySettings().associateBy { it.contactId }
         val allGroupSettings = repository.getAllGroupUrgencySettings().associateBy { it.groupId }
-        val defaultThresholds = ContactUrgencySettings(contactId = 0)
+        val defaultThresholds = ContactUrgencySettings(
+            contactId = 0,
+            greenThresholdDays = config.urgencyDefaultGreen,
+            yellowThresholdDays = config.urgencyDefaultYellow,
+            orangeThresholdDays = config.urgencyDefaultOrange,
+            redThresholdDays = config.urgencyDefaultRed
+        )
 
         val result = mutableMapOf<Int, UrgencyLevel>()
         for (contact in contacts) {
@@ -88,7 +96,13 @@ class UrgencyCalculator(context: Context) {
                 )
             }
         }
-        // Return defaults
-        return ContactUrgencySettings(contactId = contact.id)
+        // Return defaults from config
+        return ContactUrgencySettings(
+            contactId = contact.id,
+            greenThresholdDays = config.urgencyDefaultGreen,
+            yellowThresholdDays = config.urgencyDefaultYellow,
+            orangeThresholdDays = config.urgencyDefaultOrange,
+            redThresholdDays = config.urgencyDefaultRed
+        )
     }
 }

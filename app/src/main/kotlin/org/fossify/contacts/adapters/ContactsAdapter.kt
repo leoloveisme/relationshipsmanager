@@ -204,7 +204,33 @@ class ContactsAdapter(
             val map = calculator.calculateBatchUrgency(contacts)
             activity.runOnUiThread {
                 urgencyMap = map
+                val sorting = config.sorting
+                if (sorting and SORT_BY_URGENCY != 0) {
+                    sortContactsByUrgency(sorting)
+                }
                 notifyDataSetChanged()
+            }
+        }
+    }
+
+    private fun sortContactsByUrgency(sorting: Int) {
+        val urgencyOrder = mapOf(
+            UrgencyLevel.RED to 0,
+            UrgencyLevel.ORANGE to 1,
+            UrgencyLevel.YELLOW to 2,
+            UrgencyLevel.GREEN to 3,
+            UrgencyLevel.NONE to 4
+        )
+        val descending = sorting and SORT_DESCENDING != 0
+        contactItems.sortWith(compareBy { urgencyOrder[urgencyMap[it.id] ?: UrgencyLevel.NONE] ?: 4 })
+        if (descending) {
+            // NONE items stay at the bottom; reverse only the non-NONE portion
+            val noneStart = contactItems.indexOfFirst { (urgencyMap[it.id] ?: UrgencyLevel.NONE) == UrgencyLevel.NONE }
+            if (noneStart > 0) {
+                val subList = contactItems.subList(0, noneStart)
+                subList.reverse()
+            } else if (noneStart == -1) {
+                contactItems.reverse()
             }
         }
     }

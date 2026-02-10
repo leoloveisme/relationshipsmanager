@@ -16,6 +16,8 @@ import org.fossify.contacts.dialogs.ExportContactsDialog
 import org.fossify.contacts.dialogs.ManageAutoBackupsDialog
 import org.fossify.contacts.dialogs.ManageVisibleFieldsDialog
 import org.fossify.contacts.dialogs.ManageVisibleTabsDialog
+import org.fossify.contacts.dialogs.UrgencySettingsDialog
+import org.fossify.contacts.helpers.UrgencyThresholds
 import org.fossify.contacts.extensions.*
 import org.fossify.contacts.helpers.VcfExporter
 import java.io.OutputStream
@@ -60,6 +62,7 @@ class SettingsActivity : SimpleActivity() {
         setupShowPrivateContacts()
         setupOnContactClick()
         setupDefaultTab()
+        setupUrgencyDefaults()
         setupEnableAutomaticBackups()
         setupManageAutomaticBackups()
         setupExportContacts()
@@ -71,6 +74,7 @@ class SettingsActivity : SimpleActivity() {
             binding.settingsGeneralSettingsLabel,
             binding.settingsMainScreenLabel,
             binding.settingsListViewLabel,
+            binding.settingsUrgencyLabel,
             binding.settingsBackupsLabel,
             binding.settingsMigratingLabel
         ).forEach {
@@ -250,6 +254,24 @@ class SettingsActivity : SimpleActivity() {
         binding.settingsMergeDuplicateContactsHolder.setOnClickListener {
             binding.settingsMergeDuplicateContacts.toggle()
             config.mergeDuplicateContacts = binding.settingsMergeDuplicateContacts.isChecked
+        }
+    }
+
+    private fun setupUrgencyDefaults() {
+        binding.settingsUrgencyDefaultsHolder.setOnClickListener {
+            val thresholds = UrgencyThresholds(
+                green = config.urgencyDefaultGreen,
+                yellow = config.urgencyDefaultYellow,
+                orange = config.urgencyDefaultOrange,
+                red = config.urgencyDefaultRed
+            )
+            UrgencySettingsDialog(this, R.string.default_urgency_thresholds, thresholds) { result ->
+                config.urgencyDefaultGreen = result.green
+                config.urgencyDefaultYellow = result.yellow
+                config.urgencyDefaultOrange = result.orange
+                config.urgencyDefaultRed = result.red
+                toast(R.string.urgency_settings_saved)
+            }
         }
     }
 

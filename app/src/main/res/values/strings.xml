@@ -107,6 +107,7 @@
     <string name="faq_1_title">I want to change what fields are visible at contacts. Can I do it?</string>
     <string name="faq_1_text">Yes, all you have to do is go in Settings -> Manage shown contact fields. There you can select what fields should be visible. Some of them are even disabled by default, so you might find some new ones there.</string>
     <!-- Urgency -->
+    <string name="urgency">Urgency</string>
     <string name="urgency_status">Urgency status</string>
     <string name="days_since_contact">%d days since last contact</string>
     <string name="no_interaction_history">No interaction history</string>
@@ -116,6 +117,21 @@
     <string name="urgency_yellow_label">Due soon</string>
     <string name="urgency_orange_label">Overdue</string>
     <string name="urgency_red_label">Needs attention</string>
+
+    <!-- Urgency Settings -->
+    <string name="urgency_settings">Urgency settings</string>
+    <string name="default_urgency_thresholds">Default urgency thresholds</string>
+    <string name="configure_urgency">Configure urgency</string>
+    <string name="configure_contact_urgency">Configure contact urgency</string>
+    <string name="configure_group_urgency">Configure group urgency</string>
+    <string name="urgency_green_days">Green threshold (days)</string>
+    <string name="urgency_yellow_days">Yellow threshold (days)</string>
+    <string name="urgency_orange_days">Orange threshold (days)</string>
+    <string name="urgency_red_days">Red threshold (days)</string>
+    <string name="urgency_tracking_enabled">Urgency tracking enabled</string>
+    <string name="urgency_values_must_be_positive">All values must be positive numbers</string>
+    <string name="urgency_values_must_increase">Thresholds must be in increasing order</string>
+    <string name="urgency_settings_saved">Urgency settings saved</string>
 
     <!--
         Haven't found some strings? There's more at

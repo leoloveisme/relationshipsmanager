@@ -8,6 +8,7 @@ import org.fossify.commons.helpers.*
 import org.fossify.contacts.R
 import org.fossify.contacts.databinding.DialogChangeSortingBinding
 import org.fossify.contacts.extensions.config
+import org.fossify.contacts.helpers.SORT_BY_URGENCY
 
 class ChangeSortingDialog(val activity: BaseSimpleActivity, private val showCustomSorting: Boolean = false, private val callback: () -> Unit) {
     private var currSorting = 0
@@ -46,6 +47,7 @@ class ChangeSortingDialog(val activity: BaseSimpleActivity, private val showCust
             currSorting and SORT_BY_MIDDLE_NAME != 0 -> binding.sortingDialogRadioMiddleName
             currSorting and SORT_BY_SURNAME != 0 -> binding.sortingDialogRadioSurname
             currSorting and SORT_BY_FULL_NAME != 0 -> binding.sortingDialogRadioFullName
+            currSorting and SORT_BY_URGENCY != 0 -> binding.sortingDialogRadioUrgency
             currSorting and SORT_BY_CUSTOM != 0 -> binding.sortingDialogRadioCustom
             else -> binding.sortingDialogRadioDateCreated
         }
@@ -73,6 +75,7 @@ class ChangeSortingDialog(val activity: BaseSimpleActivity, private val showCust
             R.id.sorting_dialog_radio_middle_name -> SORT_BY_MIDDLE_NAME
             R.id.sorting_dialog_radio_surname -> SORT_BY_SURNAME
             R.id.sorting_dialog_radio_full_name -> SORT_BY_FULL_NAME
+            R.id.sorting_dialog_radio_urgency -> SORT_BY_URGENCY
             R.id.sorting_dialog_radio_custom -> SORT_BY_CUSTOM
             else -> SORT_BY_DATE_CREATED
         }

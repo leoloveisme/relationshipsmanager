@@ -49,7 +49,7 @@ Users can CRUD
 - entries (add new ones, delete existing ones, modify, etc)
 - groups (add new groups, modify existing ones, rename, delete - danger zone)
 
-Deleting group doesn't delete the entries in the app (and in the database)
+Deleting group doesn't delete the contacts / contact entries in the app (and in the database)
 
 Each group and each contact entry (even within a group) can have independent settings
 
